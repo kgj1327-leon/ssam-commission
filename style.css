@@ -1,0 +1,56 @@
+/* ---- reset & base ---- */
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, "Noto Sans KR", sans-serif;
+  color: #111; background: #fff; line-height: 1.6;
+  padding: 24px;
+}
+
+/* ---- header ---- */
+header h1 {
+  margin: 0 0 12px; font-size: 20px; font-weight: 800;
+}
+header h1 small { font-weight: 600; opacity: .85; }
+
+/* ---- nav ---- */
+nav { margin: 8px 0 32px; }
+nav button {
+  border: 1px solid #ddd; background: #f8f8f8; padding: 6px 10px; border-radius: 6px;
+  cursor: pointer;
+}
+
+/* ---- section columns ---- */
+#menu-section {
+  display: grid; grid-template-columns: repeat(4, minmax(180px, 1fr)); gap: 28px;
+  max-width: 1200px;
+}
+@media (max-width: 900px) { #menu-section { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { #menu-section { grid-template-columns: 1fr; } }
+
+h3 { margin: 0 0 10px; font-size: 18px; font-weight: 800; }
+ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+li { display: flex; align-items: center; gap: 10px; color: #6b7280; }
+
+/* left bar */
+li::before {
+  content: ""; width: 3px; height: 20px; background: #9ca3af; display: inline-block;
+}
+
+/* link-like buttons */
+li button {
+  background: #fff; color: #374151; border: 1px solid #e5e7eb; padding: 6px 10px;
+  border-radius: 8px; cursor: pointer;
+}
+li button:hover { border-color: #d1d5db; }
+
+/* modal */
+.modal {
+  position: fixed; inset: 0; background: rgba(0,0,0,.5);
+  display: grid; place-items: center; z-index: 50;
+}
+.modal-content {
+  background: #fff; width: 320px; padding: 16px; border-radius: 16px;
+  box-shadow: 0 8px 16px rgba(0,0,0,.12);
+  text-align: center;
+}
