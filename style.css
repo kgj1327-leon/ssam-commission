@@ -1,56 +1,94 @@
-/* ---- reset & base ---- */
-* { box-sizing: border-box; }
-html, body { margin: 0; padding: 0; }
-body {
-  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, "Noto Sans KR", sans-serif;
-  color: #111; background: #fff; line-height: 1.6;
-  padding: 24px;
+:root{
+  --bg:#ffffff; --ink:#0f172a; --muted:#6b7280;
+  --line:#e5e7eb; --surface:#f8fafc; --brand:#111827;
+  --accent:#111827; --ok:#10b981; --warn:#f59e0b; --danger:#ef4444;
 }
 
-/* ---- header ---- */
-header h1 {
-  margin: 0 0 12px; font-size: 20px; font-weight: 800;
-}
-header h1 small { font-weight: 600; opacity: .85; }
-
-/* ---- nav ---- */
-nav { margin: 8px 0 32px; }
-nav button {
-  border: 1px solid #ddd; background: #f8f8f8; padding: 6px 10px; border-radius: 6px;
-  cursor: pointer;
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  font-family: Pretendard, system-ui, -apple-system, Segoe UI, Roboto, "Noto Sans KR", Arial, sans-serif;
+  color:var(--ink); background:var(--bg);
 }
 
-/* ---- section columns ---- */
-#menu-section {
-  display: grid; grid-template-columns: repeat(4, minmax(180px, 1fr)); gap: 28px;
-  max-width: 1200px;
+/* Header */
+.header{
+  position:fixed; inset:0 auto auto 0; width:100%; height:56px;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:0 32px; z-index:50; color:#fff; background:#2a2a2a;
 }
-@media (max-width: 900px) { #menu-section { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 560px) { #menu-section { grid-template-columns: 1fr; } }
+.header h1{font-weight:700; letter-spacing:-0.2px; text-transform:lowercase; font-size:15pt}
+.header nav{opacity:.8}
+.header nav button{background:none;border:0;color:#fff;margin-left:24px;cursor:pointer;font-size:12pt}
 
-h3 { margin: 0 0 10px; font-size: 18px; font-weight: 800; }
-ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
-li { display: flex; align-items: center; gap: 10px; color: #6b7280; }
+/* Hero */
+.hero{
+  padding-top:128px; padding-bottom:96px; color:#fff; background:#2a2a2a; text-align:center;
+}
+.hero h2{font-weight:800; font-size:30pt; line-height:34pt; margin:0}
+.hero p{margin-top:30px; color:#d1d5db; font-size:18pt}
 
-/* left bar */
-li::before {
-  content: ""; width: 3px; height: 20px; background: #9ca3af; display: inline-block;
+/* Container + section title */
+.container{max-width:1152px; margin:0 auto; padding:64px 24px}
+.section-title{
+  font-weight:800; font-size:24pt; margin:16px 0 8px
 }
+.section-sub{color:var(--muted); font-size:12pt; margin-bottom:32px}
 
-/* link-like buttons */
-li button {
-  background: #fff; color: #374151; border: 1px solid #e5e7eb; padding: 6px 10px;
-  border-radius: 8px; cursor: pointer;
+/* 4-column menu grid */
+.menu-grid{
+  display:grid; grid-template-columns:repeat(1, minmax(0,1fr)); gap:32px;
 }
-li button:hover { border-color: #d1d5db; }
+@media(min-width:768px){ .menu-grid{ grid-template-columns:repeat(4, minmax(0,1fr)); } }
 
-/* modal */
-.modal {
-  position: fixed; inset: 0; background: rgba(0,0,0,.5);
-  display: grid; place-items: center; z-index: 50;
+.menu-col h3{
+  font-weight:800; font-size:17pt; text-transform:lowercase; line-height:1.15; margin:0 0 24px;
 }
-.modal-content {
-  background: #fff; width: 320px; padding: 16px; border-radius: 16px;
-  box-shadow: 0 8px 16px rgba(0,0,0,.12);
-  text-align: center;
+.menu-list{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:16px; font-size:12pt; color:#374151}
+.menu-item{ display:flex; align-items:center; gap:10px }
+.menu-item .bar{ width:3px; height:20px; background:#9ca3af }
+.menu-item button{
+  text-align:left; background:none; border:0; color:#111827; cursor:pointer; font-size:12pt;
 }
+.menu-item button:hover{ text-decoration:underline }
+
+/* Cards (커미션 타입, 섹션 등 필요 시) */
+.cards{ display:grid; grid-template-columns:repeat(1, minmax(0,1fr)); gap:24px; margin-top:48px }
+@media(min-width:768px){ .cards{ grid-template-columns:repeat(3, minmax(0,1fr)); } }
+.card{
+  background:#fff; border:1px solid var(--line); border-radius:16px; padding:20px;
+  box-shadow: 0 2px 10px rgba(0,0,0,.03);
+}
+.card h4{ margin:0 0 8px; font-size:14pt; font-weight:700 }
+.card p{ margin:0; color:var(--muted); font-size:10.5pt }
+
+/* Badge */
+.badge{
+  display:inline-block; padding:6px 10px; border-radius:999px;
+  background:var(--surface); border:1px solid var(--line); color:var(--muted);
+  font-size:10.5pt; margin-right:6px
+}
+.badge.ok{ background:#ecfdf5; border-color:#a7f3d0; color:#065f46 }
+.badge.warn{ background:#fffbeb; border-color:#fde68a; color:#92400e }
+.badge.danger{ background:#fef2f2; border-color:#fecaca; color:#7f1d1d }
+
+/* Modal (준비중입니다) */
+.modal{
+  position:fixed; inset:0; background:rgba(0,0,0,.6);
+  display:none; align-items:center; justify-content:center; z-index:60;
+}
+.modal.open{ display:flex }
+.modal-content{
+  background:#fff; padding:16px 20px; width:320px; border-radius:16px;
+  box-shadow:0 8px 16px rgba(0,0,0,.2); text-align:center
+}
+.modal-title{ font-weight:600; font-size:14pt; margin-bottom:8px }
+.modal-actions{ margin-top:16px }
+.btn{
+  padding:8px 14px; border-radius:10px; border:1px solid var(--line); background:#111827; color:#fff;
+  font-size:12.5pt; cursor:pointer;
+}
+.btn:hover{ opacity:.9 }
+
+/* Footer spacing */
+.spacer{ height:64px }
